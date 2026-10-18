@@ -25,15 +25,15 @@ The code is split into two main modules:
 
 | File | Responsibility |
 |---|---|
-| `main.py` | Builds the Tkinter GUI, reads form inputs, validates the requested appointment, and responds to button clicks |
-| `business_logic.py` | Defines the service classes and support ticket, calculates estimated cost, formats summaries, and writes files |
+| `src/main.py` | Builds the Tkinter GUI, reads form inputs, validates the requested appointment, and responds to button clicks |
+| `src/business_logic.py` | Defines the service classes and support ticket, calculates estimated cost, formats summaries, and writes files |
 
 ## How to run
 
 Requires Python 3 with Tkinter installed. Tkinter is included with many desktop Python installations, but may need to be installed separately on Linux.
 
 ```bash
-python main.py
+python src/main.py
 ```
 
 1. Enter the requester's name and a short problem description
@@ -50,7 +50,7 @@ Use **Clear** to reset the form. The saved files are local work-order examples, 
 python -m unittest discover -s tests -v
 ```
 
-The tests verify service pricing, the priority fee, optional-task totals, ticket formatting, and saving to a text file. The graphical interface itself is not covered by these unit tests.
+The tests verify service pricing, validation of invalid pricing, the priority fee, optional-task totals, ticket formatting, and saving to a text file. The test file adds `src/` to Python's module search path so the command above works from the repository root. The graphical interface itself is not covered by these unit tests.
 
 ## Project limitations
 
