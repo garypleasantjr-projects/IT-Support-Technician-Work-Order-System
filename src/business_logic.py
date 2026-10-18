@@ -20,6 +20,8 @@ class PriorityService(Service):
         self.priority_fee = priority_fee
 
     def get_price(self) -> float:
+        if self.priority_fee < 0:
+            raise ValueError("Priority fee cannot be negative")
         return super().get_price() + float(self.priority_fee)
 
 
