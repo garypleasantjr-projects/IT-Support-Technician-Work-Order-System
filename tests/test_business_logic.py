@@ -1,7 +1,11 @@
 import os
+import sys
 import tempfile
 import unittest
 from datetime import datetime
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from business_logic import Service, PriorityService, SupportTicket
 
@@ -18,6 +22,10 @@ class SupportTicketTests(unittest.TestCase):
     def test_invalid_base_price(self):
         with self.assertRaises(ValueError):
             Service("Example", -10.0).get_price()
+
+    def test_invalid_priority_fee(self):
+        with self.assertRaises(ValueError):
+            PriorityService("Example", 40.0, -5.0).get_price()
 
     def test_ticket_total_and_summary(self):
         service = PriorityService("Computer Troubleshooting", 40.0, 15.0)
